@@ -1,10 +1,12 @@
 class Item
-  attr_accessor :genre, :author, :source, :label, :publish_date, :archived
+  attr_accessor :genre, :author, :source, :label, :publish_date, :archived 
+  @@allitems = []
 
-  def initialize(publish_date)
+  def initialize(published_date)
     @id = Random.rand(1..1000)
-    @publish_date = publish_date
-    @archived = archived
+    @published_date = published_date
+    @archived = false
+    @@allitems << self
   end
 
   def can_be_archived?
@@ -13,6 +15,5 @@ class Item
 
   def move_to_archive()
     @archived = true if can_be_archived?
-  end
   end
 end

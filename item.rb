@@ -1,10 +1,10 @@
 class Item
-  attr_accessor :genre, :author, :source, :label
+  attr_reader :genre, :author, :source, :label
+  attr_accessor :publish_date, :archived
 
   def initialize(publish_date)
-    @publish_date = publish_date
-    private
     @id = Random.rand(1..1000)
-    @archived
+    @publish_date = publish_date
+    @archived = archived
   end
 end

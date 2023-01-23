@@ -3,7 +3,7 @@ require './app'
 class Main
   def main
     app = App.new
-    lop do
+    loop do
       app.display_all
       app.options
     end

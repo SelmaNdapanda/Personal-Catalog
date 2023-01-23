@@ -1,13 +1,13 @@
 class Item
   attr_accessor :genre, :author, :source, :label, :publish_date, :archived
 
-  @@allitems = []
+  @allitems = []
 
   def initialize(published_date)
     @id = Random.rand(1..1000)
     @published_date = published_date
     @archived = false
-    @@allitems << self
+    @allitems << self
   end
 
   def can_be_archived?

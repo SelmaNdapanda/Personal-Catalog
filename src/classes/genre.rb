@@ -1,4 +1,4 @@
-require_relative 'items'
+require_relative '../../item'
 
 class Genre
   attr_reader :id

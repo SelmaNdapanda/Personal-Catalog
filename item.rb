@@ -10,8 +10,10 @@ class Item
     @allitems << self
   end
 
+  private
+
   def can_be_archived?
-    publish_date > 10
+    (Time.new.year - @publish_date) > 10
   end
 
   def move_to_archive()

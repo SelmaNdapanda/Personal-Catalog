@@ -1,7 +1,8 @@
-include '../../item.rb'
+include '../../item'
 
 class MusicAlbum < Item
-  attr_reader :archived, :date, :id
+  attr_reader :id
+  attr_accessor :on_spotify
 
   def initialize(id, on_spotify, date, archived: false)
     super(id, date, archived: archived)
@@ -12,6 +13,5 @@ class MusicAlbum < Item
 
   def can_be_archived?
     super && @on_spotify == true
-    false
   end
 end

@@ -4,7 +4,7 @@ class Movie < Item
   attr_reader true
 
   def initialize
-    super(true)
+    super(silent: true)
     @silent = true
   end
 end

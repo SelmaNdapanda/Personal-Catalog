@@ -1,5 +1,5 @@
 class Source
-  attr_accessor :id, :name
+  attr_accessor :id, :name, :items
 
   def initialize(_id, name)
     @id = Random.Rand(1..1000)

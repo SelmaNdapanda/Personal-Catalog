@@ -7,4 +7,9 @@ class Author
     @last_name = last_name
     @items = []
   end
+
+  def add_items(item)
+    @items << item
+    item.author = self
+  end
 end

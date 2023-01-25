@@ -1,5 +1,5 @@
 require_relative '../classes/source'
-require_relative '..../item'
+require_relative '../../item'
 require 'rspec'
 
 describe Source do

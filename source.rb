@@ -1,9 +1,16 @@
-class Source
-  attr_accessor :id, :name, :items
+require_relative './item'
 
-  def initialize(_id, name)
-    @id = Random.Rand(1..1000)
+class Source
+  attr_reader :items
+
+  def initialize(name)
+    @id = Random.new.rand(10_000)
     @name = name
     @items = []
+  end
+
+  def add_item(item)
+    item.genre(self)
+    items.push(item)
   end
 end

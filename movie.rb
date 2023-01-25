@@ -8,4 +8,8 @@ class Movie < Item
     super(id, publish_date, archived: archived)
     @silent = silent
   end
+
+    def can_be_archived?()
+    (can_be_archived? || @silent)
+  end
 end

@@ -1,6 +1,6 @@
 require_relative './item'
 
-class Genre
+class Source
   attr_reader :items
 
   def initialize(name)
@@ -9,11 +9,8 @@ class Genre
     @items = []
   end
 
-    def add_item(item)
+  def add_item(item)
     item.genre(self)
     items.push(item)
   end
 end
-
-
-

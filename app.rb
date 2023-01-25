@@ -12,6 +12,7 @@ class App
     puts '[ 7 ] - Add a book'.cyan
     puts '[ 8 ] - Add a music album'.cyan
     puts '[ 9 ] - Add a game'.cyan
+    puts '[ 10 ] - Add a movie'.cyan
     puts "[ 0 ] - Exit \n\n".cyan
     user_choice = gets.chomp.to_i
     select_option(user_choice)
@@ -21,7 +22,7 @@ class App
     case user_choice
     when 1..6
       list_items(user_choice)
-    when 7..9
+    when 7..10
       add_items(user_choice)
     when 0
       exit
@@ -49,9 +50,11 @@ class App
 
   def add_items(user_choice)
     case user_choice
-    when 7 # create_book
-    when 8 # add_music_album
-    when 9 # add_game
+    when 7 # list_all_movies
+    when 8 # create_book
+    when 9 # add_music_album
+    when 10 # add_game
+    when 11 # add_movie
     end
     show_menu
   end

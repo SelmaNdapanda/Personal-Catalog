@@ -9,7 +9,7 @@ class Movie < Item
     @silent = silent
   end
 
-    def can_be_archived?()
+  def can_be_archived?()
     (can_be_archived? || @silent)
   end
 end

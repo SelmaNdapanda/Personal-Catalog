@@ -4,6 +4,7 @@ require_relative '../classes/author'
 @games = []
 @authors = []
 
+# rubocop:disable Metrics/MethodLength
 def add_game
   # get the values for author
   puts 'First name of the game author:'
@@ -37,3 +38,4 @@ def add_game
   @authors.push(author)
   puts 'GAME AND AUTHOR CREATED'
 end
+# rubocop:enable Metrics/MethodLength

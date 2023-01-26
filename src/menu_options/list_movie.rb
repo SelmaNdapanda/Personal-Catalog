@@ -5,6 +5,6 @@ require_relative '../classes/movie'
 def list_movies
   puts 'MOVIES:'
   @movies.each do |movie|
-    puts "Silent: #{movie.true}"
+    puts "Silent: #{movie.silent}"
   end
 end

@@ -1,6 +1,8 @@
 require 'colorize'
 require_relative './src/classes/game'
+require_relative './src/classes/movie'
 require_relative './src/menu_options/add_game'
+require_relative './src/menu_options/add_movie'
 require_relative './src/menu_options/list_game'
 require_relative './src/menu_options/list_author'
 require_relative './src/menu_options/list_movie'

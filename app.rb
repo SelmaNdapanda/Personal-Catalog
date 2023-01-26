@@ -3,6 +3,8 @@ require_relative './src/classes/game'
 require_relative './src/menu_options/add_game'
 require_relative './src/menu_options/list_game'
 require_relative './src/menu_options/list_author'
+require_relative './src/menu_options/list_movie'
+require_relative './src/menu_options/list_source'
 
 class App
   attr_accessor :games, :books, :musics, :movies
@@ -10,6 +12,8 @@ class App
   def initialize
     @games = []
     @authors = []
+    @movies = []
+    @sources = []
   end
 
   def show_menu

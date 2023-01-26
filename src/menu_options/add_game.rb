@@ -39,7 +39,7 @@ def add_game
   author = Author.new(first_name, last_name)
   @authors.push(author)
   save_author(first_name, last_name)
-  
+
   puts 'GAME AND AUTHOR CREATED'
 end
 # rubocop:enable Metrics/MethodLength

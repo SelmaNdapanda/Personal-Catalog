@@ -1,13 +1,19 @@
 require_relative '../../item'
 
 class Label
-  attr_reader :title, :color
-  @allitems = []
+  attr_accessor :title, :color
+
+  # @allitems = []
 
   def initialize(title, color)
     @id = Random.rand(1..1000)
     @title = title
     @color = color
-    @@allitems << self
+    @items = []
+  end
+
+  def add_item(item)
+    @items << item
+    item.label = self
   end
 end

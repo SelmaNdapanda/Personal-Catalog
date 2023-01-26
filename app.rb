@@ -3,6 +3,7 @@ require_relative './src/classes/game'
 require_relative './src/menu_options/add_game'
 require_relative './src/menu_options/list_game'
 require_relative './src/menu_options/list_author'
+require_relative './src/preserve_data/preserve_game_data'
 
 class App
   attr_accessor :games, :books, :musics, :movies

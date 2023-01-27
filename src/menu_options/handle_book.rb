@@ -31,9 +31,9 @@ def add_book
   cover_state = gets.chomp
   book = Book.new(publish_date, publisher, cover_state)
   @labels << label = Label.new(title, color)
-  save_label(title, color)
+  save_label(label.id, title, color)
   @books << book
   label.add_item(book)
-  save_book(publisher, cover_state, publish_date)
+  save_book(book.id, publisher, cover_state, publish_date)
   puts 'Label and Book created successfully!'
 end

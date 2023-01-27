@@ -14,7 +14,7 @@ def load_books
     books = JSON.parse(File.read('./src/preserve_data/books.json'))
 
     books.each do |book|
-      book = Book.new(book['publish_date'], book['publisher'], book['cover_state'])
+      book = Book.new(book['publish_date'], book['publisher'], book['cover_state'], id: book['id'])
       @books << book
     end
   end
@@ -32,15 +32,16 @@ def load_labels
     labels = JSON.parse(File.read('./src/preserve_data/labels.json'))
 
     labels.each do |label|
-      label = Label.new(label['title'], label['color'])
+      label = Label.new(label['title'], label['color'], id: label['id'])
       @labels << label
     end
   end
   file.close
 end
 
-def save_book(publisher, cover_state, publish_date)
+def save_book(id, publisher, cover_state, publish_date)
   obj = {
+    id: id,
     publisher: publisher,
     cover_state: cover_state,
     publish_date: publish_date
@@ -64,8 +65,9 @@ def save_book(publisher, cover_state, publish_date)
   myfile.close
 end
 
-def save_label(title, color)
+def save_label(id, title, color)
   obj = {
+    id: id,
     title: title,
     color: color
   }

@@ -5,8 +5,10 @@ require_relative './src/menu_options/add_game'
 require_relative './src/menu_options/add_movie'
 require_relative './src/menu_options/list_game'
 require_relative './src/menu_options/list_author'
+require_relative './src/preserve_data/preserve_game_data'
 require_relative './src/menu_options/list_movie'
 require_relative './src/menu_options/list_source'
+require_relative './src/preserve_data/preserve_movies_data'
 
 class App
   attr_accessor :games, :books, :musics, :movies

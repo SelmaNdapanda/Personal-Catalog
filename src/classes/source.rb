@@ -1,7 +1,7 @@
 require_relative '../../item'
 
 class Source
-  attr_reader :items
+  attr_accessor :id, :name, :items
 
   def initialize(name)
     @id = Random.new.rand(10_000)
@@ -9,8 +9,8 @@ class Source
     @items = []
   end
 
-  def add_item(item)
-    item.genre(self)
-    items.push(item)
+  def add_items(item)
+    @items << item
+    item.source = self
   end
 end

@@ -78,6 +78,7 @@ class App
     show_menu
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity:
   def list_items(user_choice)
     case user_choice
     when 1 # list_all_books
@@ -91,6 +92,7 @@ class App
     end
     show_menu
   end
+  # rubocop:enable Metrics/CyclomaticComplexity:
 
   def add_items(user_choice)
     case user_choice

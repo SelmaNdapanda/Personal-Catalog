@@ -48,7 +48,6 @@ module MovieModule
     input
   end
 
-  # rubocop:disable Metrics/PerceivedComplexity
   # rubocop:disable Metrics/MethodLength
   def archive_movie(movie)
     silent = (get_user_input('Want to mute the movie? (y/n): ', %w[y n]) == 'y')
@@ -79,5 +78,4 @@ module MovieModule
     @movies << movie
   end
   # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/PerceivedComplexity
 end

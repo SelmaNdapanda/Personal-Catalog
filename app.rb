@@ -8,6 +8,8 @@ require_relative './src/menu_options/list_author'
 require_relative './src/preserve_data/preserve_game_data'
 require_relative './src/menu_options/list_movie'
 require_relative './src/menu_options/list_source'
+require_relative './src/menu_options/handle_book'
+require_relative './src/preserve_data/preserve_movies_data'
 
 require_relative './src/modules/music_module'
 require_relative './src/modules/genre_module'
@@ -27,6 +29,8 @@ class App
     @authors = []
     @movies = []
     @sources = []
+    @labels = []
+    @books = []
   end
 
   def show_menu
@@ -79,6 +83,7 @@ class App
       list_games
     when 4 then list_all_genres
     when 5 # list_all_labels
+      list_labels
     when 6
       list_authors
     end

@@ -7,6 +7,7 @@ require_relative './src/menu_options/list_game'
 require_relative './src/menu_options/list_author'
 require_relative './src/menu_options/list_movie'
 require_relative './src/menu_options/list_source'
+require_relative './src/menu_options/handle_book'
 
 class App
   attr_accessor :games, :books, :musics, :movies
@@ -16,6 +17,8 @@ class App
     @authors = []
     @movies = []
     @sources = []
+    @labels = []
+    @books = []
   end
 
   def show_menu
@@ -63,11 +66,13 @@ class App
   def list_items(user_choice)
     case user_choice
     when 1 # list_all_books
+      list_books
     when 2 # list_all_music_albums
     when 3
       list_games
     when 4 # list_all_genres
     when 5 # list_all_labels
+      list_labels
     when 6
       list_authors
     end
@@ -79,6 +84,7 @@ class App
     when 7 # list_all_sources
     when 8 # list_all_movies
     when 9 # create_book
+      add_book
     when 10 # add_music_album
     when 11
       add_game

@@ -1,4 +1,4 @@
-require '../../book'
+require_relative '..\classes\book'
 
 @books = []
 @labels = []

@@ -40,7 +40,7 @@ class Movie < Item
                                                                         id: object['id'])
     author = JSON.parse(JSON.generate(object['author']), create_additions: true)
     label = JSON.parse(JSON.generate(object['label']), create_additions: true)
-    source = JSON.parse(JSON.generate(object['genre']), create_additions: true)
+    source = JSON.parse(JSON.generate(object['source']), create_additions: true)
     author.add_item(album)
     label.add_item(album)
     source.add_item(album)

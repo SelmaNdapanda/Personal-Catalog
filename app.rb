@@ -2,25 +2,28 @@ require 'colorize'
 require_relative './src/classes/game'
 require_relative './src/classes/movie'
 require_relative './src/menu_options/add_game'
-require_relative './src/menu_options/add_movie'
 require_relative './src/menu_options/list_game'
 require_relative './src/menu_options/list_author'
 require_relative './src/preserve_data/preserve_game_data'
-require_relative './src/menu_options/list_movie'
 require_relative './src/menu_options/list_source'
 require_relative './src/menu_options/handle_book'
 require_relative './src/preserve_data/preserve_movies_data'
 require_relative './src/preserve_data/preserve_book_data'
 
 require_relative './src/modules/music_module'
+require_relative './src/modules/source_module'
 require_relative './src/modules/genre_module'
 require_relative './src/classes/musicalbum'
+require_relative './src/modules/movie_module'
 require_relative './src/classes/genre'
+require_relative './src/classes/source'
 require_relative './src/storage'
 
 class App
   include GenreModule
   include MusicModule
+  include SourceModule
+  include MovieModule
   attr_accessor :games, :books, :musics, :movies
 
   def initialize
@@ -95,13 +98,14 @@ class App
 
   def add_items(user_choice)
     case user_choice
-    when 7 # list_all_sources
-    when 8 # list_all_movies
+    when 7
+      list_all_sources
+    when 8 then list_all_movies
     when 9 # create_book
     when 10 then add_music_album
     when 11
       add_game
-    when 12 # add_movie
+    when 12 then add_movie
     end
     show_menu
   end
@@ -110,5 +114,7 @@ class App
     puts "Thank you for using the app, see you later!👋  \n\n".blue
     Storage.save_data('genres', @genres)
     Storage.save_data('music_albums', @albums)
+    Storage.save_data('sources', @sources)
+    Storage.save_data('movies', @movies)
   end
 end

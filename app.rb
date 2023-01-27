@@ -95,8 +95,7 @@ class App
 
   def add_items(user_choice)
     case user_choice
-    when 7
-      list_all_sources
+    when 7 then list_all_sources
     when 8 then list_all_movies
     when 9 # create_book
     when 10 then add_music_album

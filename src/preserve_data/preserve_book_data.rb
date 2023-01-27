@@ -21,4 +21,20 @@ def load_books
   file.close
 end
 
+def load_label
+  return unless File.exist?('./src/preserve_data/labels.json')
 
+  file = File.open('./src/preserve_data/labels.json')
+
+  if file.empty?
+    'Sorry, There is no label saved yet!'
+  else
+    labels = JSON.parse(File.read('./src/preserve_data/labels.json'))
+
+    labels.each do |label|
+      label = Label.new(label['title'], label['color'])
+      @labels << label
+    end
+  end
+  file.close
+end

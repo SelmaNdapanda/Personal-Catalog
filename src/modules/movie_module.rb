@@ -10,14 +10,14 @@ module MovieModule
   include SourceModule
 
   def list_all_movies
-    if @albums.empty?
+    if @movies.empty?
       puts "\nNo Movies to Show 🚫 Please add some Movies Albums . . .".magenta
     else
-      puts "\nAvailable Movies Albums in the list 🎵 🎧 : #{@albums.count} \n".magenta
-      @albums.each_with_index do |album, index|
-        print "[ #{index + 1} ]:  Movies: #{album.movie_name}"
-        print "#{album.source.name} |  Archived: #{album.archived} | "
-        puts "Mute: #{album.silent} | Publication_date: #{album.publish_date}"
+      puts "\nAvailable Movies Albums in the list 🎵 🎧 : #{@movies.count} \n".magenta
+      @movies.each_with_index do |movie, index|
+        print "[ #{index + 1} ]:  Movies: #{movie.movie_name}"
+        print "#{movie.source.name} |  Archived: #{movie.archived} | "
+        puts "Mute: #{movie.silent} | Publication_date: #{movie.publish_date}"
       end
     end
   end
@@ -28,13 +28,13 @@ module MovieModule
     print 'Enter the publish date of the movie e.g (2023-01-11): '
     date = set_valid_date
 
-    album = Movie.new(nil, movie_name, date)
+    movie = Movie.new(nil, movie_name, date)
 
-    archive_movie(album)
+    archive_movie(movie)
 
     source = add_source
-    source.add_item(album)
-    puts "\nSource added for movie #{album.movie_name} successfully 🤹‍♂️✅ ".green
+    source.add_item(movie)
+    puts "\nSource added for movie #{movie.movie_name} successfully 🤹‍♂️✅ ".green
   end
 
   def get_user_input(prompt, valid_responses)
@@ -50,22 +50,22 @@ module MovieModule
 
   # rubocop:disable Metrics/PerceivedComplexity
   # rubocop:disable Metrics/MethodLength
-  def archive_movie(album)
+  def archive_movie(movie)
     silent = (get_user_input('Want to mute the movie? (y/n): ', %w[y n]) == 'y')
-    album.silent = silent
+    movie.silent = silent
 
     current_date = Date.today
-    year = current_date.year - album.publish_date.year
+    year = current_date.year - movie.publish_date.year
 
-    if year > 10 && silent
+    if year > 10
       archived = (get_user_input('Do you want to archive this movie? (y/n): ', %w[y n]) == 'y')
-      album.archived = archived
+      movie.archived = archived
       if archived
         if get_user_input('Do you want to confirm archiving this movie (y/n): ', %w[y n]) == 'y'
-          album.move_to_archive
+          movie.move_to_archive
           puts "\nMovie archived and created successfully 🎵 ✅ ".green
         else
-          album.archived = false
+          movie.archived = false
           puts "\nMovie not archived but created successfully 🎵 ✅ ".green
         end
       else
@@ -76,7 +76,7 @@ module MovieModule
     else
       puts "\nThe movie album is not older than 10 years. It cannot be archived. Album created successfully 🎵 ✅".green
     end
-    @albums << album
+    @movies << movie
   end
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/PerceivedComplexity

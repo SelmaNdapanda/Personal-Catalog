@@ -22,7 +22,7 @@ class Movie < Item
   def as_json()
     {
       JSON.create_id => self.class.name,
-      'on_spotify' => @silent,
+      'silent' => @silent,
       'movie_name' => @movie_name,
       'date' => @publish_date,
       'archived' => @archived,
@@ -36,14 +36,14 @@ class Movie < Item
   end
 
   def self.json_create(object)
-    album = new(object['silent'], object['movie_name'], object['date'], archived: object['archived'],
+    movie = new(object['silent'], object['movie_name'], object['date'], archived: object['archived'],
                                                                         id: object['id'])
     author = JSON.parse(JSON.generate(object['author']), create_additions: true)
     label = JSON.parse(JSON.generate(object['label']), create_additions: true)
     source = JSON.parse(JSON.generate(object['source']), create_additions: true)
-    author.add_item(album)
-    label.add_item(album)
-    source.add_item(album)
+    author.add_item(movie)
+    label.add_item(movie)
+    source.add_item(movie)
     album
   end
 end

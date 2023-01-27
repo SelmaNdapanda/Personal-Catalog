@@ -81,26 +81,24 @@ class App
     show_menu
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity:
   def list_items(user_choice)
     case user_choice
     when 1 # list_all_books
     when 2 then list_all_music_albums
-    when 3
-      list_games
+    when 3 then list_games
     when 4 then list_all_genres
-    when 5 # list_all_labels
-      list_labels
-    when 6
-      list_authors
+    when 5 then list_labels
+    when 6 then list_authors
+    when 7 then list_all_sources
+    when 8 then list_all_movies
     end
     show_menu
   end
+  # rubocop:enable Metrics/CyclomaticComplexity:
 
   def add_items(user_choice)
     case user_choice
-    when 7
-      list_all_sources
-    when 8 then list_all_movies
     when 9 # create_book
     when 10 then add_music_album
     when 11

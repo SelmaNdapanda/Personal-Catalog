@@ -39,7 +39,7 @@ def load_sources
   file.close
 end
 
-def save_movie(publish_date, silent, name)
+def save_movie(_id, publish_date, silent, name)
   obj = {
     publish_date: publish_date,
     silent: silent,
@@ -51,7 +51,7 @@ def save_movie(publish_date, silent, name)
   file = File.open('./src/preserve_data/movies.json')
 
   if file.empty?
-    game = [obj]
+    movie = [obj]
   else
     movie = JSON.parse(File.read('./src/preserve_data/movies.json'))
     movie << obj
@@ -66,7 +66,7 @@ end
 
 def save_source(name)
   obj = {
-    name: name,
+    name: name
   }
 
   return unless File.exist?('./src/preserve_data/sources.json')

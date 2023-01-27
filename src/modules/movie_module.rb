@@ -30,7 +30,7 @@ module MovieModule
 
     album = Movie.new(nil, movie_name, date)
 
-     archive_movie(album)
+    archive_movie(album)
 
     source = add_source
     source.add_item(album)

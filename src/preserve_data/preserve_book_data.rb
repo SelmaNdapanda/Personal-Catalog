@@ -41,9 +41,9 @@ end
 
 def save_book(publisher, cover_state, publish_date)
   obj = {
-    publisher: publisher
-    cover_state: cover_state
-    publish_date: publish_date,
+    publisher: publisher,
+    cover_state: cover_state,
+    publish_date: publish_date
   }
 
   return unless File.exist?('./src/preserve_data/books.json')

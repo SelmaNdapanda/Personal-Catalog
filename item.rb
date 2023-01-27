@@ -5,7 +5,7 @@ class Item
 
   def initialize(id, publish_date, archived: false)
     @id = id.nil? ? Random.rand(1..1000) : id
-    @publish_date = publish_date
+    @publish_date = Date.parse(publish_date)
     @archived = archived
   end
 
@@ -19,7 +19,9 @@ class Item
     true
   end
 
-  def move_to_archive()
+  public
+
+  def move_to_archive
     @archived = true if can_be_archived?
   end
 end

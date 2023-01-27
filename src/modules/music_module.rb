@@ -55,8 +55,7 @@ module MusicModule
     album.on_spotify = on_spotify
 
     current_date = Date.today
-    publish_date_obj = Date.parse(album.publish_date)
-    year = current_date.year - publish_date_obj.year
+    year = current_date.year - album.publish_date.year
 
     if year > 10 && on_spotify
       archived = (get_user_input('Do you want to archive this music album? (y/n): ', %w[y n]) == 'y')

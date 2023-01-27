@@ -32,14 +32,6 @@ module MusicModule
 
     archive_album(album)
 
-    # author = add_author
-    # author.add_items(album)
-    # puts "\nAuthor added for album #{album.album_name} successfully 👤✅".green
-
-    # label = add_label
-    # label.add_item(album)
-    # puts "\nLabel added for album #{album.album_name} successfully 📘✅ ".green
-
     genre = add_genre
     genre.add_item(album)
     puts "\nGenre added for album #{album.album_name} successfully 🤹‍♂️✅ ".green

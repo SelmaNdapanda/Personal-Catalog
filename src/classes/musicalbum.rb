@@ -27,8 +27,6 @@ class MusicAlbum < Item
       'date' => @publish_date,
       'archived' => @archived,
       'id' => @id,
-      'author' => @author,
-      'label' => @label,
       'genre' => @genre
     }
   end

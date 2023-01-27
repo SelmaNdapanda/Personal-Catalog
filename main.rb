@@ -17,6 +17,7 @@ class Main
 
   puts "\nWelcome to the Cataloge App! ⭐ 📝 \n".blue
   app = App.new
+  app.load_data
   app.show_menu
 end
 

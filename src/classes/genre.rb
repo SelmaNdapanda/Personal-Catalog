@@ -1,4 +1,5 @@
 require_relative '../../item'
+require 'json'
 
 class Genre
   attr_reader :id
@@ -6,7 +7,7 @@ class Genre
 
   def initialize(name, id: nil)
     @id = id.nil? ? generate_id : id
-    @name = name.to_s
+    @name = name
     @items = []
   end
 
@@ -19,5 +20,23 @@ class Genre
 
   def generate_id
     rand(1..1000)
+  end
+
+  public
+
+  def as_json()
+    {
+      JSON.create_id => self.class.name,
+      'name' => @name,
+      'id' => @id
+    }
+  end
+
+  def to_json(*options)
+    as_json.to_json(*options)
+  end
+
+  def self.json_create(object)
+    new(object['name'], id: object['id'])
   end
 end

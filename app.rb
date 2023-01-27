@@ -11,10 +11,20 @@ require_relative './src/menu_options/list_source'
 require_relative './src/menu_options/handle_book'
 require_relative './src/preserve_data/preserve_movies_data'
 
+require_relative './src/modules/music_module'
+require_relative './src/modules/genre_module'
+require_relative './src/classes/musicalbum'
+require_relative './src/classes/genre'
+require_relative './src/storage'
+
 class App
+  include GenreModule
+  include MusicModule
   attr_accessor :games, :books, :musics, :movies
 
   def initialize
+    @albums = []
+    @genres = []
     @games = []
     @authors = []
     @movies = []
@@ -68,11 +78,10 @@ class App
   def list_items(user_choice)
     case user_choice
     when 1 # list_all_books
-      list_books
-    when 2 # list_all_music_albums
+    when 2 then list_all_music_albums
     when 3
       list_games
-    when 4 # list_all_genres
+    when 4 then list_all_genres
     when 5 # list_all_labels
       list_labels
     when 6
@@ -86,8 +95,7 @@ class App
     when 7 # list_all_sources
     when 8 # list_all_movies
     when 9 # create_book
-      add_book
-    when 10 # add_music_album
+    when 10 then add_music_album
     when 11
       add_game
     when 12 # add_movie
@@ -97,5 +105,7 @@ class App
 
   def exit
     puts "Thank you for using the app, see you later!👋  \n\n".blue
+    Storage.save_data('genres', @genres)
+    Storage.save_data('music_albums', @albums)
   end
 end

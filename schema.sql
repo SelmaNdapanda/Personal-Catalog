@@ -24,3 +24,19 @@ CREATE TABLE author(
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL
 );
+
+CREATE TABLE genres(
+  id INT, 
+  name VARCHAR(255), 
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE musicalbums(
+  id INT, 
+  name VARCHAR(255), 
+  published_date DATE, 
+  on_spotify BOOLEAN, 
+  archived BOOLEAN,
+  genre_id INT REFERENCES genres(id), 
+  PRIMARY KEY(id)
+);

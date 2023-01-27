@@ -10,6 +10,7 @@ require_relative './src/menu_options/list_movie'
 require_relative './src/menu_options/list_source'
 require_relative './src/menu_options/handle_book'
 require_relative './src/preserve_data/preserve_movies_data'
+require_relative './src/preserve_data/preserve_book_data'
 
 class App
   attr_accessor :games, :books, :musics, :movies
@@ -45,6 +46,8 @@ class App
   def load_data
     load_games
     load_author
+    load_books
+    load_labels
   end
 
   def select_option(user_choice)

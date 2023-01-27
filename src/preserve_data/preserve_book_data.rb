@@ -14,14 +14,14 @@ def load_books
     books = JSON.parse(File.read('./src/preserve_data/books.json'))
 
     books.each do |book|
-      book = Book.new(book['publisher'], book['cover_state'], book['publish_date'])
+      book = Book.new(book['publish_date'], book['publisher'], book['cover_state'])
       @books << book
     end
   end
   file.close
 end
 
-def load_label
+def load_labels
   return unless File.exist?('./src/preserve_data/labels.json')
 
   file = File.open('./src/preserve_data/labels.json')

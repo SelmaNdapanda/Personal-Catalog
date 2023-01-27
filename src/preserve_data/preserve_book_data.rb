@@ -38,3 +38,29 @@ def load_label
   end
   file.close
 end
+
+def save_book(publisher, cover_state, publish_date)
+  obj = {
+    publisher: publisher
+    cover_state: cover_state
+    publish_date: publish_date,
+  }
+
+  return unless File.exist?('./src/preserve_data/books.json')
+
+  file = File.open('./src/preserve_data/books.json')
+
+  if file.empty?
+    book = [obj]
+  else
+    book = JSON.parse(File.read('./src/preserve_data/books.json'))
+    book << obj
+  end
+
+  file.close
+
+  myfile = File.open('./src/preserve_data/books.json', 'w')
+  myfile.write(JSON.pretty_generate(book))
+  myfile.close
+end
+

@@ -1,26 +1,39 @@
-require 'rspec'
-require '../classes/book'
+require_relative './spec_helper'
 
 describe Book do
   before :each do
-    @book = Book.new('2021/02/03', 'Math Lens', 'Good')
+    @book = Book.new('abc', '2000/01/01', 'Wiley', 'good', archived: true, id: rand(1..1000))
+    @book1 = Book.new('abc', '2010/01/11', 'Cole', 'cover', id: rand(1..1000))
+    @book2 = Book.new('abc', '2022/01/11', 'Cole', 'bad', id: rand(1..1000))
   end
 
-  describe '#new' do
-    it 'returns a new book object' do
-      @book.should be_an_instance_of Book
+  context 'When testing a Book class' do
+    it 'book should be an instance of Book class' do
+      expect(@book).to be_an_instance_of Book
     end
-  end
 
-  describe '#publish_date' do
-    it 'returns the correct published date' do
-      @book.publish_date.should == '2021/02/03'
+    it 'should return the correct publisher' do
+      expect(@book.publisher).to eql 'Wiley'
     end
-  end
 
-  describe '#cover_state' do
-    it 'returns the correct cover_state' do
-      @book.cover_state.should == 'Good'
+    it 'should return the correct cover_state' do
+      expect(@book.cover_state).to eql 'good'
+    end
+
+    it 'should return true when cover state is not bad or not archived' do
+      @book1.move_to_archive
+      expect(@book1.archived).to be true
+    end
+
+    it 'should return true when the cover_state is bad or not archived' do
+      @book2.move_to_archive
+      expect(@book2.archived).to be true
+    end
+
+    it 'should return false publish date is less than 10 years' do
+      @book1.publish_date = Date.parse('2022/01/01')
+      @book1.move_to_archive
+      expect(@book1.archived).to be false
     end
   end
 end

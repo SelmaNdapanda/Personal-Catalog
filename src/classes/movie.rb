@@ -1,4 +1,4 @@
-require_relative '../../item'
+require_relative './items'
 require 'json'
 
 class Movie < Item
@@ -38,12 +38,8 @@ class Movie < Item
   def self.json_create(object)
     movie = new(object['silent'], object['movie_name'], object['date'], archived: object['archived'],
                                                                         id: object['id'])
-    author = JSON.parse(JSON.generate(object['author']), create_additions: true)
-    label = JSON.parse(JSON.generate(object['label']), create_additions: true)
     source = JSON.parse(JSON.generate(object['source']), create_additions: true)
-    author.add_item(movie)
-    label.add_item(movie)
     source.add_item(movie)
-    album
+    movie
   end
 end

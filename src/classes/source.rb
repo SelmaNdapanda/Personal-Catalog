@@ -1,12 +1,11 @@
-require_relative '../../item'
+require_relative './items'
 require 'json'
 
 class Source
-  attr_reader :id
-  attr_accessor :name, :items
+  attr_accessor :name, :items, :id
 
   def initialize(name, id: nil)
-    @id = id.nil? ? generate_id : id
+    @id = id.nil? ? Random.rand(1..1000) : id
     @name = name
     @items = []
   end
@@ -16,19 +15,10 @@ class Source
     item.source = self
   end
 
-  private
-
-  def generate_id
-    rand(1..1000)
-  end
-
-  public
-
   def as_json()
     {
       JSON.create_id => self.class.name,
-      'name' => @name,
-      'id' => @id
+      'name' => @name
     }
   end
 
@@ -37,6 +27,6 @@ class Source
   end
 
   def self.json_create(object)
-    new(object['name'], id: object['id'])
+    new(object['name'])
   end
 end

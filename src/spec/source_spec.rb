@@ -1,29 +1,20 @@
-require_relative '../classes/source'
-require_relative '..../item'
-require 'rspec'
+require_relative './spec_helper'
 
 describe Source do
   describe 'class' do
-    it 'creates a new Source item' do
-      source = Source.new('facebook')
-      expect(source.name).to eq('facebook')
+    it 'creates a new Source name' do
+      source = Source.new('Netflix')
+      expect(source.name).to eq('Netflix')
     end
 
-    it 'creates a new Source name' do
-      source = Source.new('facebok')
+    it 'items of source are empty' do
+      source = Source.new('Netflix')
       expect(source.items).to eq([])
     end
 
-    it 'generate a random id' do
-      source = Source.new('facebook')
-      allow(source).to receive(:rand).and_return(5)
-      result = source.send(:generate_id)
-      expect(result).to eq(5)
-    end
-
-    it 'add random source' do
-      item = Item.new('archived', DateTime.now.to_s)
-      source = Source.new('facebook', id: 10)
+    it 'add random item' do
+      item = Item.new(true, '2022-02-01')
+      source = Source.new('Netflix', id: 10)
       source.add_item(item)
       expect(source.items).to include(item)
     end

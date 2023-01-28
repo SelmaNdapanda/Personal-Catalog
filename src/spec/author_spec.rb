@@ -1,17 +1,31 @@
-require 'rspec'
-require_relative '../classes/author'
-require_relative '../../item'
+require_relative './spec_helper'
 
 describe Author do
-  context 'instantiate Author object' do
-    author = Author.new('FirstName', 'LastName')
+  let(:author) { Author.new('John', 'Doe') }
+  let(:item) { Item.new(true, '2022-02-01') }
 
-    it 'should print authors first name' do
-      expect(author.first_name).to eq 'FirstName'
+  it 'has a first name' do
+    expect(author.first_name).to eq('John')
+  end
+
+  it 'has a last name' do
+    expect(author.last_name).to eq('Doe')
+  end
+
+  it 'has a items array that starts empty' do
+    expect(author.items).to eq([])
+  end
+
+  describe '#add_item' do
+    it 'adds an item to the items array' do
+      author.add_item(item)
+      expect(author.items).to include(item)
     end
 
-    it 'should print authors last name' do
-      expect(author.last_name).to eq 'LastName'
+    it 'sets the item\'s author to the current author' do
+      allow(item).to receive(:author=)
+      author.add_item(item)
+      expect(item).to have_received(:author=).with(author)
     end
   end
 end

@@ -1,5 +1,4 @@
 require_relative './source_module'
-require_relative '../menu_options/list_source'
 require_relative './valid_date'
 
 require 'json'
@@ -11,9 +10,9 @@ module MovieModule
 
   def list_all_movies
     if @movies.empty?
-      puts "\nNo Movies to Show 🚫 Please add some Movies Albums . . .".magenta
+      puts "\nNo Movies to Show 🚫 Please add some Movies . . .".magenta
     else
-      puts "\nAvailable Movies Albums in the list 🎵 🎧 : #{@movies.count} \n".magenta
+      puts "\nAvailable Movies in the list 🎥 🎧 : #{@movies.count} \n".magenta
       @movies.each_with_index do |movie, index|
         print "[ #{index + 1} ]:  Movies: #{movie.movie_name}"
         print "#{movie.source.name} |  Archived: #{movie.archived} | "

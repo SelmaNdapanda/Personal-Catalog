@@ -1,16 +1,3 @@
 [
-  {
-    "json_class": "Game",
-    "multiplayer": true,
-    "last_played_at": "2023-01-01",
-    "publish_date": "2022-01-01",
-    "archived": null,
-    "id": 282,
-    "author": {
-      "json_class": "Author",
-      "first_name": "Selma",
-      "last_name": "Hamutenya",
-      "id": 256
-    }
-  }
+
 ]

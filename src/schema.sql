@@ -1,0 +1,78 @@
+CREATE TABLE item (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    publish_date DATE NOT NULL,
+    archived BOOLEAN NOT NULL DEFAULT FALSE,
+    author_id INTEGER NOT NULL,
+    source_id INTEGER NOT NULL,
+    label_id INTEGER NOT NULL,
+    genre_id INTEGER NOT NULL,
+    FOREIGN KEY (author_id) REFERENCES author (id),
+    FOREIGN KEY (source_id) REFERENCES source (id),
+    FOREIGN KEY (label_id) REFERENCES label (id),
+    FOREIGN KEY (genre_id) REFERENCES genre (id)
+);
+
+CREATE TABLE game(
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  multiplayer VARCHAR(100) NOT NULL,
+  last_played_at DATE NOT NULL,
+  FOREIGN KEY (item_id) REFERENCES item (id)
+);
+
+CREATE TABLE author(
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE genres(
+  id INT,
+  name VARCHAR(255),
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE musicalbums(
+  id INT,
+  name VARCHAR(255),
+  published_date DATE,
+  on_spotify BOOLEAN,
+  archived BOOLEAN,
+  genre_id INT REFERENCES genres(id),
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE books(
+    id INT, 
+    name VARCHAR(255), 
+    published_date DATE, 
+    publisher VARCHAR(255), 
+    cover_state VARCHAR(255), 
+    archived BOOLEAN, 
+    label_id INT REFERENCES labels(id), 
+    PRIMARY KEY(id)
+);
+
+CREATE MOVIE(
+  ID SERIAL PRIMARY KEY,
+  SOURCE_ID INT,
+  LABEL_ID FOREIGN KEY (LABEL_ID) REFERENCES LABELS (ID) ON DELETE SET NULL,
+  PUBLISH_DATE DATE,
+  ARCHIVED BOOLEAN,
+  SILENT BOOLEAN,
+);
+
+ALTER TABLE MOVIE CONSTRAINT FK_SOURCE FOREGIN KEY (SOURCE_ID) REFERENCES SOURCE (ID)
+
+CREATE TABLE SOURCE (
+  ID SERIAL PRIMARY KEY,
+  NAME VARCHAR(100),
+  ITEM_ID INT,
+  CONSTRAINT FK_ITEM FOREGIN KEY (ITEM_ID) REFERENCES ITEMS (ID) ON DELETE SET NULL
+);
+
+CREATE TABLE label(
+  id INT, 
+  title VARCHAR(255), 
+  color VARCHAR(255), 
+  PRIMARY KEY(id)
+);

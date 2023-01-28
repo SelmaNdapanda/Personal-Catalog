@@ -1,4 +1,4 @@
-require_relative '../../item'
+require_relative 'items'
 require 'json'
 
 class Genre

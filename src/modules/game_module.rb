@@ -56,7 +56,6 @@ module GameModule
     input
   end
 
-  # rubocop:disable Metrics/MethodLength
   def archive_game(game)
     current_date = Date.today
     last_played_date = Date.parse(game.last_played_at)
@@ -70,5 +69,4 @@ module GameModule
     end
     @games << game
   end
-  # rubocop:enable Metrics/MethodLength
 end

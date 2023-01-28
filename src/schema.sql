@@ -41,6 +41,17 @@ CREATE TABLE musicalbums(
   PRIMARY KEY(id)
 );
 
+CREATE TABLE books(
+    id INT, 
+    name VARCHAR(255), 
+    published_date DATE, 
+    publisher VARCHAR(255), 
+    cover_state VARCHAR(255), 
+    archived BOOLEAN, 
+    label_id INT REFERENCES labels(id), 
+    PRIMARY KEY(id)
+);
+
 CREATE MOVIE(
   ID SERIAL PRIMARY KEY,
   SOURCE_ID INT,
@@ -57,4 +68,11 @@ CREATE TABLE SOURCE (
   NAME VARCHAR(100),
   ITEM_ID INT,
   CONSTRAINT FK_ITEM FOREGIN KEY (ITEM_ID) REFERENCES ITEMS (ID) ON DELETE SET NULL
+);
+
+CREATE TABLE label(
+  id INT, 
+  title VARCHAR(255), 
+  color VARCHAR(255), 
+  PRIMARY KEY(id)
 );

@@ -1,18 +1,19 @@
 require 'colorize'
 require_relative './src/classes/game'
 require_relative './src/classes/movie'
-require_relative './src/menu_options/add_movie'
-require_relative './src/menu_options/list_movie'
 require_relative './src/menu_options/list_source'
 require_relative './src/menu_options/handle_book'
 require_relative './src/preserve_data/preserve_movies_data'
-
+require_relative './src/preserve_data/preserve_book_data'
 require_relative './src/modules/game_module'
 require_relative './src/modules/author_module'
 require_relative './src/modules/music_module'
+require_relative './src/modules/source_module'
 require_relative './src/modules/genre_module'
 require_relative './src/classes/musicalbum'
+require_relative './src/modules/movie_module'
 require_relative './src/classes/genre'
+require_relative './src/classes/source'
 require_relative './src/storage'
 
 class App
@@ -20,6 +21,8 @@ class App
   include GameModule
   include GenreModule
   include MusicModule
+  include SourceModule
+  include MovieModule
   attr_accessor :games, :books, :musics, :movies
 
   def initialize
@@ -52,10 +55,10 @@ class App
     select_option(user_choice)
   end
 
-  # def load_data
-  #   load_games
-  #   load_author
-  # end
+  def load_data
+    load_books
+    load_labels
+  end
 
   def select_option(user_choice)
     case user_choice
@@ -75,6 +78,7 @@ class App
     show_menu
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity:
   def list_items(user_choice)
     case user_choice
     when 1 # list_all_books
@@ -86,19 +90,20 @@ class App
       list_labels
     when 6
       list_all_authors
+    when 7 then list_all_sources
+    when 8 then list_all_movies
     end
     show_menu
   end
+  # rubocop:enable Metrics/CyclomaticComplexity:
 
   def add_items(user_choice)
     case user_choice
-    when 7 # list_all_sources
-    when 8 # list_all_movies
     when 9 # create_book
     when 10 then add_music_album
     when 11
       add_game
-    when 12 # add_movie
+    when 12 then add_movie
     end
     show_menu
   end
@@ -109,5 +114,7 @@ class App
     Storage.save_data('music_albums', @albums)
     Storage.save_data('authors', @authors)
     Storage.save_data('games', @games)
+    Storage.save_data('sources', @sources)
+    Storage.save_data('movies', @movies)
   end
 end

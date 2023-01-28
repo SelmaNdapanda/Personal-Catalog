@@ -18,7 +18,7 @@ class Source
   def as_json()
     {
       JSON.create_id => self.class.name,
-      'name' => @name,
+      'name' => @name
     }
   end
 

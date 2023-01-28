@@ -1,31 +1,17 @@
-require_relative '../classes/movie'
-require_relative '../../item'
-require 'rspec'
+require_relative './spec_helper'
 
-describe Movie do
-  describe 'class' do
-    it 'creates a new Movie name' do
-      movie = Movie.new('Stars')
-      expect(movie.name).to eq('Stars')
+RSpec.describe Movie do
+  describe '#initialize' do
+    it 'Should be silent' do
+      movie = Movie.new(false, 'Nothing was the same', '2022-02-01')
+      expect(movie.silent).to eq(false)
     end
-
-    it 'creates a new Movie name' do
-      movie = Movie.new('Stars')
-      expect(movie.items).to eq([])
-    end
-
-    it 'generate a random id' do
-      movie = Movie.new('Stars')
-      allow(movie).to receive(:rand).and_return(5)
-      result = movie.send(:generate_id)
-      expect(result).to eq(5)
-    end
-
-    it 'add random item' do
-      item = Item.new('archived', DateTime.now.to_s)
-      movie = Movie.new('Stars', id: 10)
-      movie.add_item(item)
-      expect(movie.items).to include(item)
+  end
+  describe 'can be archive method' do
+    it 'can be archive the movie' do
+      movie = Movie.new(true, 'The Enchanter', '2011-11-16')
+      result = movie.send(:can_be_archived?)
+      expect(result).to eq(true)
     end
   end
 end

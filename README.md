@@ -76,7 +76,7 @@ This project involves creating a console application that allows users to keep t
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Video Presentation](https://drive.google.com/file/d/1vg2ijQhepcedpODeKfc3cdBwJEKjS7Nn/view?usp=sharing)
+- [Video Presentation](https://drive.google.com/file/d/1o7An3uENnyvTAp3Xm7TA56IB5Q4zfh3i/view?usp=share_link)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

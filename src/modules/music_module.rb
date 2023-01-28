@@ -1,12 +1,15 @@
 require_relative './genre_module'
+require_relative './authors_module'
+require_relative './label_module'
 require_relative './valid_date'
-
 require 'json'
 require 'colorize'
 require 'date'
 
 module MusicModule
   include GenreModule
+  include AuthorModule
+  include LabelModule
 
   def list_all_music_albums
     if @albums.empty?
@@ -30,6 +33,14 @@ module MusicModule
     album = MusicAlbum.new(nil, album_name, date)
 
     archive_album(album)
+
+    author = add_author
+    author.add_item(album)
+    puts "\nAuthor added for album #{album.album_name} successfully 👤✅".green
+
+    label = add_label
+    label.add_item(album)
+    puts "\nLabel added for album #{album.album_name} successfully 📘✅ ".green
 
     genre = add_genre
     genre.add_item(album)

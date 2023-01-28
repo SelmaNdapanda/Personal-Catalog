@@ -19,7 +19,9 @@ class Item
     true
   end
 
-  def move_to_archive()
+  public
+
+  def move_to_archive
     @archived = true if can_be_archived?
   end
 end

@@ -1,5 +1,4 @@
 require_relative './genre_module'
-require_relative '../menu_options/list_author'
 require_relative './valid_date'
 
 require 'json'

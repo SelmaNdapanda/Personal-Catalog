@@ -32,7 +32,7 @@ class App
     @authors = []
     @genres = []
     @movies = []
-    @ = []
+    @sources = []
     load_data
   end
 

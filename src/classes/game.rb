@@ -1,23 +1,25 @@
-require_relative '../../item'
-require 'date'
+require_relative 'items'
 require 'json'
 
-class Game < Item
+class Genre
   attr_reader :id
-  attr_accessor :multiplayer, :last_played_at
+  attr_accessor :name, :items
 
-  def initialize(publish_date, multiplayer, last_played_at)
-    super(id, publish_date, archived: archived)
-    @multiplayer = multiplayer
-    @last_played_at = last_played_at
+  def initialize(name, id: nil)
+    @id = id.nil? ? generate_id : id
+    @name = name
+    @items = []
+  end
+
+  def add_item(item)
+    @items << item
+    item.genre = self
   end
 
   private
 
-  def can_be_archived?
-    last_played_date = DateTime.parse(@last_played_at).to_date
-    archived = (Date.today.year - last_played_date.year) > 2
-    super && archived
+  def generate_id
+    rand(1..1000)
   end
 
   public
@@ -25,12 +27,8 @@ class Game < Item
   def as_json()
     {
       JSON.create_id => self.class.name,
-      'multiplayer' => @multiplayer,
-      'last_played_at' => @last_played_at,
-      'publish_date' => @publish_date,
-      'archived' => @archived,
-      'id' => @id,
-      'author' => @author
+      'name' => @name,
+      'id' => @id
     }
   end
 
@@ -39,10 +37,6 @@ class Game < Item
   end
 
   def self.json_create(object)
-    game = new(object['multiplayer'], object['last_played_at'], object['publish_date'], archived: object['archived'],
-                                                                                        id: object['id'])
-    author = JSON.parse(JSON.generate(object['author']), create_additions: true)
-    author.add_item(game)
-    game
+    new(object['name'], id: object['id'])
   end
 end

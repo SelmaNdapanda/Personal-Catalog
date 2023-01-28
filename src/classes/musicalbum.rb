@@ -1,4 +1,7 @@
-require_relative '../../item'
+require_relative 'items'
+require_relative './author'
+require_relative './label'
+require_relative './genre'
 require 'json'
 
 class MusicAlbum < Item
@@ -27,6 +30,8 @@ class MusicAlbum < Item
       'date' => @publish_date,
       'archived' => @archived,
       'id' => @id,
+      'author' => @author,
+      'label' => @label,
       'genre' => @genre
     }
   end

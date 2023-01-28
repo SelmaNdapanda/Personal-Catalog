@@ -1,39 +1,50 @@
-require 'colorize'
-require_relative './src/classes/game'
-require_relative './src/classes/movie'
-require_relative './src/menu_options/list_source'
-require_relative './src/menu_options/handle_book'
-require_relative './src/preserve_data/preserve_movies_data'
-require_relative './src/preserve_data/preserve_book_data'
 require_relative './src/modules/game_module'
-require_relative './src/modules/author_module'
-require_relative './src/modules/music_module'
-require_relative './src/modules/source_module'
+require_relative './src/modules/book_module'
 require_relative './src/modules/genre_module'
-require_relative './src/classes/musicalbum'
+require_relative './src/modules/label_module'
+require_relative './src/modules/music_module'
 require_relative './src/modules/movie_module'
+require_relative './src/modules/source_module'
+require_relative './src/classes/musicalbum'
+require_relative './src/classes/items'
 require_relative './src/classes/genre'
+require_relative './src/classes/movie'
 require_relative './src/classes/source'
 require_relative './src/storage'
+require 'colorize'
+require 'json'
 
 class App
-  include AuthorModule
-  include GameModule
+  include BookModule
+  include LabelModule
   include GenreModule
   include MusicModule
-  include SourceModule
+  include GameModule
+  include AuthorModule
   include MovieModule
-  attr_accessor :games, :books, :musics, :movies
+  include SourceModule
 
   def initialize
-    @albums = []
-    @genres = []
     @games = []
-    @authors = []
-    @movies = []
-    @sources = []
+    @albums = []
     @labels = []
     @books = []
+    @authors = []
+    @genres = []
+    @movies = []
+    @ = []
+    load_data
+  end
+
+  def load_data
+    @labels = Storage.load_data('labels')
+    @books = Storage.load_data('books')
+    @genres = Storage.load_data('genres')
+    @albums = Storage.load_data('music_albums')
+    @authors = Storage.load_data('authors')
+    @games = Storage.load_data('games')
+    @movies = Storage.load_data('movies')
+    @sources = Storage.load_data('sources')
   end
 
   def show_menu
@@ -55,11 +66,6 @@ class App
     select_option(user_choice)
   end
 
-  def load_data
-    load_books
-    load_labels
-  end
-
   def select_option(user_choice)
     case user_choice
     when 1..8
@@ -73,48 +79,15 @@ class App
     end
   end
 
-  def invalid_option
-    puts "\n 🛑 ❌ ❌ Invalid option. Please select a valid input...".red.underline
-    show_menu
-  end
-
-  # rubocop:disable Metrics/CyclomaticComplexity:
-  def list_items(user_choice)
-    case user_choice
-    when 1 # list_all_books
-    when 2 then list_all_music_albums
-    when 3
-      list_all_games
-    when 4 then list_all_genres
-    when 5 # list_all_labels
-      list_labels
-    when 6
-      list_all_authors
-    when 7 then list_all_sources
-    when 8 then list_all_movies
-    end
-    show_menu
-  end
-  # rubocop:enable Metrics/CyclomaticComplexity:
-
-  def add_items(user_choice)
-    case user_choice
-    when 9 # create_book
-    when 10 then add_music_album
-    when 11
-      add_game
-    when 12 then add_movie
-    end
-    show_menu
-  end
-
   def exit
     puts "Thank you for using the app, see you later!👋  \n\n".blue
+    Storage.save_data('books', @books)
+    Storage.save_data('labels', @labels)
     Storage.save_data('genres', @genres)
     Storage.save_data('music_albums', @albums)
-    Storage.save_data('authors', @authors)
     Storage.save_data('games', @games)
-    Storage.save_data('sources', @sources)
+    Storage.save_data('authors', @authors)
     Storage.save_data('movies', @movies)
+    Storage.save_data('sources', @sources)
   end
 end
